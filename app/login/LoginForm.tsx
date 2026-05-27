@@ -14,7 +14,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams()
   const next = searchParams.get('next') ?? '/'
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault()
     setLoading(true)
     setError('')
