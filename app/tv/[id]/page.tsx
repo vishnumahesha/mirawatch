@@ -1,7 +1,18 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTVDetails, getTVSeason, TMDB_IMAGE_BASE } from '@/lib/tmdb'
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params
+  try {
+    const show = await getTVDetails(Number(id))
+    return { title: `${show.name} — Mirage` }
+  } catch {
+    return { title: 'Mirage' }
+  }
+}
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Play, Star } from 'lucide-react'

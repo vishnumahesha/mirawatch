@@ -1,4 +1,4 @@
-# Vidstream — Design Spec
+# Mirage — Design Spec
 **Date:** 2026-05-27  
 **Stack:** Next.js 15 App Router · TypeScript strict · Tailwind · Supabase · shadcn/ui · lucide-react  
 **Deploy target:** Vercel
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Vidstream is a dark-themed streaming site. TMDB provides metadata; Vidking provides video playback via iframe embed. Supabase stores auth, watch progress, and watchlists.
+Mirage is a dark-themed streaming site. TMDB provides metadata; Vidking provides video playback via iframe embed. Supabase stores auth, watch progress, and watchlists.
 
 ---
 

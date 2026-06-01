@@ -7,8 +7,12 @@ import { createClient } from '@/lib/supabase/server'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Vidstream',
-  description: 'Stream movies and TV shows',
+  title: 'Mirage',
+  description: 'Mirage — movies and TV, on demand.',
+  openGraph: {
+    title: 'Mirage',
+    description: 'Mirage — movies and TV, on demand.',
+  },
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

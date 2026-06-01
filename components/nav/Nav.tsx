@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { User } from '@supabase/supabase-js'
-import { Tv, Search, LogOut, Bookmark } from 'lucide-react'
+import { Search, LogOut, Bookmark } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -24,9 +24,8 @@ export default function Nav({ user }: { user: User | null }) {
   return (
     <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-background/80 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl text-brand">
-          <Tv className="w-6 h-6" />
-          Vidstream
+        <Link href="/" className="font-bold text-xl text-brand tracking-tight">
+          Mirage
         </Link>
         <div className="flex items-center gap-4">
           <Link href="/search" className="text-gray-400 hover:text-white transition-colors">

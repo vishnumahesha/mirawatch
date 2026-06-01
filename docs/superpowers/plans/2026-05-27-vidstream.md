@@ -1,8 +1,8 @@
-# Vidstream Implementation Plan
+# Mirage Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a full-stack streaming site (Vidstream) with TMDB metadata, Vidking iframe playback, Supabase auth + watch progress, and a Netflix-dark UI.
+**Goal:** Build a full-stack streaming site (Mirage) with TMDB metadata, Vidking iframe playback, Supabase auth + watch progress, and a Netflix-dark UI.
 
 **Architecture:** Next.js 15 App Router, RSC-first. All TMDB calls in server-only lib (`lib/tmdb.ts`) — key never reaches the client. Proxy route at `/api/tmdb/[...path]` exists per spec. Supabase via `@supabase/ssr` — user-bound client everywhere, no service role. Params and cookies are Promises in Next.js 15 — always await them.
 
@@ -618,7 +618,7 @@ export default function LoginPage() {
           <div className="flex justify-center text-brand">
             <Tv className="w-10 h-10" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Sign in to Vidstream</h1>
+          <h1 className="text-2xl font-bold text-white">Sign in to Mirage</h1>
           <p className="text-gray-400 text-sm">Enter your email for a magic link</p>
         </div>
         <Suspense fallback={null}>
@@ -803,7 +803,7 @@ export default function Nav({ user }: { user: User | null }) {
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-brand">
           <Tv className="w-6 h-6" />
-          Vidstream
+          Mirage
         </Link>
         <div className="flex items-center gap-4">
           <Link href="/search" className="text-gray-400 hover:text-white transition-colors">
@@ -858,8 +858,8 @@ import { createClient } from '@/lib/supabase/server'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Vidstream',
-  description: 'Stream movies and TV shows',
+  title: 'Mirage',
+  description: 'Mirage — movies and TV, on demand.',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
