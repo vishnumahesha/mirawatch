@@ -163,7 +163,6 @@ export default function Player({
         src={src}
         className="flex-1 w-full"
         allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
         allowFullScreen
       />
       <div className="flex justify-center py-2 bg-black">
