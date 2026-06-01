@@ -121,3 +121,51 @@ export const getTVSeason = (id: number, season: number) =>
   tmdbFetch(SeasonSchema, `tv/${id}/season/${season}`)
 export const searchMulti = (query: string) =>
   tmdbFetch(MediaListSchema, 'search/multi', { query })
+
+// ── Genre types ───────────────────────────────────────────────────────────────
+
+export const GenreListSchema = z.object({ genres: z.array(GenreSchema) })
+export type Genre = z.infer<typeof GenreSchema>
+
+// ── Discover params ───────────────────────────────────────────────────────────
+
+export type DiscoverParams = {
+  page?: number
+  sort_by?: string
+  with_genres?: string
+  'primary_release_date.gte'?: string
+  'primary_release_date.lte'?: string
+  'first_air_date.gte'?: string
+  'first_air_date.lte'?: string
+  'with_runtime.gte'?: string
+  'with_runtime.lte'?: string
+}
+
+const DiscoverSchema = z.object({
+  results: z.array(MediaItemSchema),
+  page: z.number(),
+  total_pages: z.number(),
+  total_results: z.number(),
+})
+
+export type DiscoverResult = z.infer<typeof DiscoverSchema>
+
+// ── New fetchers ──────────────────────────────────────────────────────────────
+
+export const getNowPlayingMovies = () => tmdbFetch(MediaListSchema, 'movie/now_playing')
+export const getUpcomingMovies    = () => tmdbFetch(MediaListSchema, 'movie/upcoming')
+export const getAiringTodayTV     = () => tmdbFetch(MediaListSchema, 'tv/airing_today')
+export const getOnTheAirTV        = () => tmdbFetch(MediaListSchema, 'tv/on_the_air')
+export const getMovieGenres       = () => tmdbFetch(GenreListSchema, 'genre/movie/list')
+export const getTVGenres          = () => tmdbFetch(GenreListSchema, 'genre/tv/list')
+
+export const getRecommendations = (type: 'movie' | 'tv', id: number) =>
+  tmdbFetch(MediaListSchema, `${type}/${id}/recommendations`)
+
+export function discoverMedia(type: 'movie' | 'tv', params: DiscoverParams = {}) {
+  const p: Record<string, string> = {}
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== '') p[k] = String(v)
+  }
+  return tmdbFetch(DiscoverSchema, `discover/${type}`, p)
+}

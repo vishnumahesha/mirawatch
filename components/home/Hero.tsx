@@ -4,8 +4,8 @@ import { getTrending, TMDB_IMAGE_BASE } from '@/lib/tmdb'
 import { Button } from '@/components/ui/button'
 import { Play, Info } from 'lucide-react'
 
-export default async function Hero() {
-  const trending = await getTrending('all', 'week')
+export default async function Hero({ type: trendingType = 'all' }: { type?: 'movie' | 'tv' | 'all' }) {
+  const trending = await getTrending(trendingType ?? 'all', 'week')
   const item = trending.results.find(r => r.backdrop_path) ?? trending.results[0]
   if (!item) return null
 
