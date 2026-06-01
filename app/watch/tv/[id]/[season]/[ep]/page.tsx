@@ -41,6 +41,7 @@ export default async function WatchTVPage({
         posterPath={show.poster_path}
         backdropPath={show.backdrop_path}
         episodeTitle={episode.name}
+        backHref={`/tv/${id}?s=${season}`}
       />
     </div>
   )

@@ -24,6 +24,7 @@ export default async function WatchMoviePage({ params }: { params: Promise<{ id:
         title={movie.title}
         posterPath={movie.poster_path}
         backdropPath={movie.backdrop_path}
+        backHref={`/movie/${id}`}
       />
     </div>
   )
