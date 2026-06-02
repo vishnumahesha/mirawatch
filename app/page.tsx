@@ -3,12 +3,16 @@ import Hero from '@/components/home/Hero'
 import MediaRow from '@/components/home/MediaRow'
 import ContinueWatching from '@/components/home/ContinueWatching'
 import { Skeleton } from '@/components/ui/skeleton'
-import { getTrending } from '@/lib/tmdb'
-
-async function TrendingRow() {
-  const data = await getTrending()
-  return <MediaRow title="Trending This Week" items={data.results} />
-}
+import {
+  getTrending,
+  getNowPlayingMovies,
+  getPopularMovies,
+  getPopularTV,
+  getTopRatedMovies,
+  getTopRatedTV,
+  getUpcomingMovies,
+  getAiringTodayTV,
+} from '@/lib/tmdb'
 
 function RowSkeleton() {
   return (
@@ -23,6 +27,41 @@ function RowSkeleton() {
   )
 }
 
+async function HomeRows() {
+  const [
+    trending,
+    nowPlaying,
+    popularMovies,
+    popularTV,
+    topRatedMovies,
+    topRatedTV,
+    upcoming,
+    airingToday,
+  ] = await Promise.all([
+    getTrending('all', 'week'),
+    getNowPlayingMovies(),
+    getPopularMovies(),
+    getPopularTV(),
+    getTopRatedMovies(),
+    getTopRatedTV(),
+    getUpcomingMovies(),
+    getAiringTodayTV(),
+  ])
+
+  return (
+    <>
+      <MediaRow title="Trending Now"       items={trending.results} />
+      <MediaRow title="New Releases"       items={nowPlaying.results}   type="movie" />
+      <MediaRow title="Popular Movies"     items={popularMovies.results} type="movie" />
+      <MediaRow title="Popular TV Shows"   items={popularTV.results}    type="tv" />
+      <MediaRow title="Top Rated Movies"   items={topRatedMovies.results} type="movie" />
+      <MediaRow title="Top Rated TV Shows" items={topRatedTV.results}   type="tv" />
+      <MediaRow title="Upcoming Movies"    items={upcoming.results}     type="movie" />
+      <MediaRow title="Airing Today"       items={airingToday.results}  type="tv" />
+    </>
+  )
+}
+
 export default function HomePage() {
   return (
     <main className="min-h-screen pb-16">
@@ -31,7 +70,13 @@ export default function HomePage() {
       </Suspense>
       <div className="relative z-10 -mt-16 space-y-10 pt-8">
         <ContinueWatching />
-        <Suspense fallback={<RowSkeleton />}><TrendingRow /></Suspense>
+        <Suspense fallback={
+          <div className="space-y-10">
+            {Array.from({ length: 8 }).map((_, i) => <RowSkeleton key={i} />)}
+          </div>
+        }>
+          <HomeRows />
+        </Suspense>
       </div>
     </main>
   )

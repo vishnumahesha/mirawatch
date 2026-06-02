@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Search, Compass } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 export default function Nav() {
   return (
@@ -18,9 +18,6 @@ export default function Nav() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/discover" className="text-gray-400 hover:text-white transition-colors">
-            <Compass className="w-5 h-5" />
-          </Link>
           <Link href="/search" className="text-gray-400 hover:text-white transition-colors">
             <Search className="w-5 h-5" />
           </Link>
