@@ -13,6 +13,7 @@ import Team from './_components/Team'
 import Guarantee from './_components/Guarantee'
 import FAQ from './_components/FAQ'
 import SiteFooter from './_components/SiteFooter'
+import ElevenLabsWidget from './_components/ElevenLabsWidget'
 
 const sora = Sora({
   subsets: ['latin'],
@@ -64,11 +65,7 @@ export default function NirvanaPage() {
       <SiteFooter />
 
       {/* ElevenLabs widget embeds here */}
-      <div
-        id="elevenlabs-widget-slot"
-        className="fixed bottom-6 right-6 z-[300]"
-        aria-label="AI support widget slot"
-      />
+      <ElevenLabsWidget />
     </div>
   )
 }

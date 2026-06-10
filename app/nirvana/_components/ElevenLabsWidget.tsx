@@ -1,0 +1,15 @@
+'use client'
+
+// Renders the ElevenLabs conversational AI widget as a real custom element.
+// dangerouslySetInnerHTML is used so React doesn't try to type-check the
+// unknown "elevenlabs-convai" tag — the element is hydrated by the CDN script.
+export default function ElevenLabsWidget() {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html:
+          '<elevenlabs-convai agent-id="agent_9101ktsc5gmpe5dszbas6a8w9n96"></elevenlabs-convai>',
+      }}
+    />
+  )
+}
