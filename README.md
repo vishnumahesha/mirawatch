@@ -12,7 +12,7 @@ This repo contains two things:
 | Page | URL |
 |------|-----|
 | Mirawatch home | https://mirawatch.vercel.app |
-| Nirvana demo | https://mirawatch.vercel.app/nirvana |
+| Nirvana demo | https://nirvana-demo-sandy.vercel.app |
 
 ---
 
